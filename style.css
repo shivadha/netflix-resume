@@ -1,20 +1,155 @@
-/* TRANSITIONS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* INTRO */
 #intro {
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #intro.fade-out {
   opacity: 0;
-  transform: scale(1.05);
+  transform: scale(0.9);
+}
+
+.light {
+  width: 300px;
+  height: 4px;
+  background: red;
+  margin-bottom: 20px;
+  animation: sweep 1.5s ease-in-out;
+}
+
+@keyframes sweep {
+  from { width: 0; }
+  to { width: 300px; }
+}
+
+#intro h1 {
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+#intro button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* NETFLIX VERTICAL STREAKS */
+#streaks {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(229,9,20,0.9) 0px,
+    rgba(229,9,20,0.9) 2px,
+    transparent 2px,
+    transparent 18px
+  );
+  opacity: 0;
+  transform: scaleX(0.2);
+  filter: blur(1px);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#streaks.active {
+  animation: streakExpand 0.7s ease-in-out forwards;
+}
+
+@keyframes streakExpand {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  40% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.4);
+  }
+}
+
+/* ZOOM EFFECT */
+body.zoom {
+  animation: netflixZoom 0.8s ease-in-out forwards;
+}
+
+@keyframes netflixZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* MAIN APP */
+.hidden {
+  display: none;
 }
 
 #app {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #app.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.navbar {
+  padding: 20px;
+  font-size: 22px;
+}
+
+.hero {
+  padding: 60px;
+  background: linear-gradient(to top, #000, transparent);
+}
+
+.hero .buttons a {
+  background: red;
+  padding: 10px 20px;
+  margin-right: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.row {
+  padding: 20px 60px;
+}
+
+.cards {
+  display: flex;
+  gap: 15px;
+}
+
+.card {
+  background: #141414;
+  padding: 40px;
+  min-width: 200px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.08);
 }
