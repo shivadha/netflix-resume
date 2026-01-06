@@ -1,17 +1,21 @@
 function enterSite() {
   const intro = document.getElementById("intro");
   const app = document.getElementById("app");
-  const neon = document.getElementById("neon-overlay");
+  const streaks = document.getElementById("streaks");
 
-  // Neon sweep
-  neon.classList.add("active");
+  // Netflix-style streak animation
+  streaks.classList.add("active");
 
-  // Fade out intro
+  // Zoom effect
+  document.body.classList.add("zoom");
+
+  // Fade intro
   intro.classList.add("fade-out");
 
+  // Show main page
   setTimeout(() => {
     intro.style.display = "none";
     app.classList.remove("hidden");
     app.classList.add("show");
-  }, 800);
+  }, 650);
 }
